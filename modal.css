@@ -1,0 +1,153 @@
+﻿/*цілий окремий CSS довелось виділити на ці модальні і немодальні вікна*/
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modalForm {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#dialog {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+}
+
+.thank-you-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #4CAF50;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.fixed-bot-right{
+
+}
+
+.hidden{
+    display: none;
+}
+
+.shown{
+    display: block;
+}
+
+/*знайдено на просторах інтернету (stack overflow)*/
+
+@layer normalize, open-props, base, mdl, demo;
+
+@import url(https://unpkg.com/normalize.css) layer(normalize);
+@import url(https://unpkg.com/open-props/normalize.min.css) layer(open-props);
+@import url(https://unpkg.com/open-props/open-props.min.css) layer(open-props);
+@import url(https://rodydavis.github.io/material-design-lite/css/mdl.min.css) layer(mdl);
+@import url(https://rodydavis.github.io/material-design-lite/css/themes/baseline.css) layer(mdl);
+
+@layer demo {
+    dialog[open]:not(:modal) {
+        z-index: 2;
+        transform-style: preserve-3d;
+    }
+
+        dialog[open]:not(:modal):before {
+            content: "";
+            position: fixed;
+            height: 500vh;
+            /*width: 100vw;*/
+            top: 50%;
+            left: 50%;
+            /*background: hsl(0 0% 10% / 0.25);*/
+            transform: translate3d(-50%, -50%, -1px);
+        }
+}
+#modal:before {
+    content: "";
+    position: fixed;
+    height: 500vh;
+    width: 100vw;
+    top: 50%;
+    left: 50%;
+    background: hsl(0 0% 10% / 0.25);
+    transform: translate3d(-50%, -50%, -1px);
+}
+
+@layer base {
+    *,
+    *:after,
+    *:before {
+        box-sizing: border-box;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        gap: var(--size-4);
+    }
+
+    dialog {
+        gap: var(--size-2);
+        background: var(--surface-1);
+        background-color: #d0d9d9; 
+    }
+
+        dialog::backdrop {
+            background: hsl(0 0% 10% / 0.5);
+        }
+
+        dialog[open] {
+            display: grid;
+        }
+
+    .warning-message {
+        border: var(--size-1) solid var(--yellow-4);
+        padding: var(--size-4);
+        background: var(--gray-0);
+        position: fixed;
+        top: var(--size-4);
+        left: var(--size-4);
+    }
+
+    @supports (selector(:modal)) {
+        .warning-message {
+            display: none;
+        }
+    }
+}
